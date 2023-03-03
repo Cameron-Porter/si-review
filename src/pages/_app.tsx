@@ -94,6 +94,7 @@ const App = ({ Component }: { Component: React.ComponentType }) => {
             className={styles.card}
             target="_self"
             rel="noopener noreferrer"
+            passHref
           >
             <h2 className={inter.className}>
               View cart <span>-&gt;</span>
