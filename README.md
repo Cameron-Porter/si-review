@@ -23,10 +23,11 @@ The `pages/api` directory is mapped to `/api/*`. Files in this directory are tre
 This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
 
 ## Exam
+
 First, fix any build errors
 Next, fix any bugs or runtime/console errors that you find
 Please update the code so that shipping is calculated whenever a product or coupon are added
-Please update the code so that taxes are recalculated whenever a product or coupon are added, but only *after* the shipping is calculated
+Please update the code so that taxes are recalculated whenever a product or coupon are added, but only _after_ the shipping is calculated
 Please update the code so that the total cannot go below half the total cost of the products and show a message to the user
 Please make any refactors or changes to the code that you think increase the clarity or usability of the code
 Please add the ability to remove products and coupons
@@ -34,6 +35,7 @@ Please limit coupons to no more than two on the cart
 Answer any comments starting with "QUESTION" if you have the time
 
 ## Bonus
+
 Make the cart persistent between refreshes
 Add some mock products that the user can add. Adding a product should then navigate to the cart page
 Add mock coupon codes and handle invalid coupons
@@ -41,11 +43,21 @@ Add a user login page (functionality can be mocked)
 Add a database to store the information (this can be hosted in the cloud, as well)
 
 ## Super bonus
+
 Deploy to a web hosting service
 
 ## Questions
+
 When you refresh the cart page, the cart disappears, why is this?
 What is the difference between a default and a non-default export?
 Could you give a broad overview of how Redux works?
 When is a React component re-rendered?
 When is a React component function called? Is this the same as when it's re-rendered?
+
+## Answers
+
+- The cart page saves things in the redux store, meaning it is in browser memory and not persistent.
+- Default vs named exports default doesn't need curly braces and named does.
+- Its a central place for data to be stored. Can be updated through functions (reducers) and any component can access/update the states within the store.
+- React components re-render when props/state change and sometimes when the parent component also re-renders.
+- A component is called when it is rendered for the 1st time or re-rendered due to props/state changes. If the props/state have not changed after it has been called the 1st time, then calls will just reference a previously rendered version of the component to save resources.
