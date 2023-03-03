@@ -43,7 +43,12 @@ const App = ({ Component }: { Component: React.ComponentType }) => {
   if (cartIsLoading) {
     return (
       <div className={styles.loader}>
-        <Image src="/Spinner-1s-200px.svg" alt="Loading Animation" />
+        <Image
+          src="/Spinner-1s-200px.svg"
+          alt="Loading Animation"
+          width={100}
+          height={100}
+        />
       </div>
     );
   }
