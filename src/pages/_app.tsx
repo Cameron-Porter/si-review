@@ -17,6 +17,7 @@ import { selectIsCartLoading } from "@store/app/selectors";
 
 const App = ({ Component }: { Component: React.ComponentType }) => {
   // QUESTION: What does the `as` keyword do here? Why are we using it?
+  // Answer: The 'as' is asserting the type assigned to store.dispatch, which allows it to utilize thunk actions.
   const thunkDispatch = store.dispatch as ThunkDispatch<
     StoreState,
     any,
@@ -26,6 +27,7 @@ const App = ({ Component }: { Component: React.ComponentType }) => {
   const [cartIsLoading, setCartIsLoading] = useState(false);
 
   // QUESTION: why do we have to access the store directly here instead of using hooks?
+  // Answer: Hooks will only run during component rendering. So direct access allows us to get and set store changes as they occur.
 
   useEffect(() => {
     const unsubscribe = store.subscribe(() => {
@@ -35,6 +37,7 @@ const App = ({ Component }: { Component: React.ComponentType }) => {
     });
 
     // QUESTION: when will this method returned by the effect be called?
+    // Answer: When the component unmounts.
     return () => {
       unsubscribe();
     };
