@@ -1,23 +1,27 @@
-import Image from 'next/image'
-import './globals.css'
-import styles from '@pages/page.module.css'
-import { addProductAsync } from '@store/app/thunks'
-import { Inter } from '@next/font/google';
-import Link from 'next/link';
+import Image from "next/image";
+import "./globals.css";
+import styles from "@pages/page.module.css";
+import { addProductAsync } from "@store/app/thunks";
+import { Inter } from "@next/font/google";
+import Link from "next/link";
 
-const inter = Inter({ subsets: ['latin'] })
-import { store } from '@store/store';
-import { Provider } from 'react-redux';
-import { ThunkDispatch } from 'redux-thunk';
-import { StoreState } from '@store';
-import { Action } from 'redux';
-import { useEffect, useState } from 'react'
+const inter = Inter({ subsets: ["latin"] });
+import { store } from "@store/store";
+import { Provider } from "react-redux";
+import { ThunkDispatch } from "redux-thunk";
+import { StoreState } from "@store";
+import { Action } from "redux";
+import { useEffect, useState } from "react";
 
-import { selectIsCartLoading } from '@store/app/selectors';
+import { selectIsCartLoading } from "@store/app/selectors";
 
 const App = ({ Component }: { Component: React.ComponentType }) => {
   // QUESTION: What does the `as` keyword do here? Why are we using it?
-  const thunkDispatch = store.dispatch as ThunkDispatch<StoreState, any, Action<any>>;
+  const thunkDispatch = store.dispatch as ThunkDispatch<
+    StoreState,
+    any,
+    Action<any>
+  >;
 
   const [cartIsLoading, setCartIsLoading] = useState(false);
 
@@ -34,14 +38,16 @@ const App = ({ Component }: { Component: React.ComponentType }) => {
     return () => {
       unsubscribe();
     };
-  }, [])
+  }, []);
 
-  if(cartIsLoading){
-    return <div className={styles.loader}>
-      <img src='/Spinner-1s-200px.svg' />
-    </div>
+  if (cartIsLoading) {
+    return (
+      <div className={styles.loader}>
+        <Image src="/Spinner-1s-200px.svg" alt="Loading Animation" />
+      </div>
+    );
   }
-  
+
   return (
     <Provider store={store}>
       <main className={styles.main}>
@@ -51,11 +57,7 @@ const App = ({ Component }: { Component: React.ComponentType }) => {
             <code className={styles.code}>src/pages/_app.tsx</code>
           </p>
           <div>
-            <a
-              href="#"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
+            <a href="#" target="_blank" rel="noopener noreferrer">
               Sharper Image Code Exam
             </a>
           </div>
@@ -77,14 +79,14 @@ const App = ({ Component }: { Component: React.ComponentType }) => {
         <div className={styles.grid}>
           <button
             className={styles.card}
-            onClick={async () => await thunkDispatch(addProductAsync()).unwrap()}
+            onClick={async () =>
+              await thunkDispatch(addProductAsync()).unwrap()
+            }
           >
             <h2 className={inter.className}>
               Add product <span>+</span>
             </h2>
-            <p className={inter.className}>
-              Add product to cart
-            </p>
+            <p className={inter.className}>Add product to cart</p>
           </button>
 
           <Link
@@ -96,12 +98,14 @@ const App = ({ Component }: { Component: React.ComponentType }) => {
             <h2 className={inter.className}>
               View cart <span>-&gt;</span>
             </h2>
-            <p className={inter.className}>See the items that have been added to your cart.</p>
+            <p className={inter.className}>
+              See the items that have been added to your cart.
+            </p>
           </Link>
         </div>
       </main>
     </Provider>
-  )
-}
+  );
+};
 
 export default App;
